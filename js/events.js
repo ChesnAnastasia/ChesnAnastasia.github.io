@@ -1,19 +1,4 @@
-let events = (function(){
-    function handlerEditProfilePhoto() {
-        
-    }
-
-    function handlerAddNewPost(){
-        setHTML.setAddNewPostPage(new  Date());
-    }
-
-    function handlerLogOut(func){
-        module.changeUser();
-    }
-
-    function handlerLogIn(){
-        setHTML.setLogInPage();
-    }
+window.events = (function(){
 
     function handlerButtonEnter(){
         let login = document.getElementById('login').value;
@@ -28,14 +13,6 @@ let events = (function(){
         module.changeUser(login);
     }
 
-    function handlerShowMore(btn){
-        let count = document.getElementsByClassName('post').length;
-        if (count + 2 >= photoPosts.length) {
-            btn.style.display = 'none';
-        }
-        module.getPhotoPosts(count, 2);
-    }
-
     function handlerSearch(){
         let authorName = document.getElementById('author-name').value;
         let htags = document.getElementById('tags').value;
@@ -43,6 +20,9 @@ let events = (function(){
         console.log(authorName);
         console.log(tags);
         console.log(date);
+        let tape = document.getElementsByClassName('Tape');
+        tape.innerHTML = '';
+        module.getPhotoPosts(0, 2, {author: authorName});
         /*let filter = {
             author: authorName,
             tags: htags,
@@ -72,26 +52,23 @@ let events = (function(){
     }
 
     function handlerLike(){
-        //let like = document.querySelector('.like-icon material-icons');
-        //like.style.color =  rgb(168, 35, 95);
+        let like = document.querySelector('.like-icon material-icons');
+        like.style.color = rgb(160, 28, 85);
+    }
+
+    function handlerDelete(obj){
+        //removePhotoPost(document.getElementById);
+        console.log(obj);
+    }
+
+    function handlerCountLikes(){
+
     }
 
     return{
-        handlerEditProfilePhoto,
-        handlerAddNewPost,
-        handlerLogOut,
-        handlerLogIn,
         handlerButtonEnter,
-        handlerShowMore,
         handlerSearch,
-        handlerLike
+        handlerLike,
+        handlerDelete
     }
 })();
-
-//document.querySelector('.b1').addEventListener('click', events.handlerEditProfilePhoto());
-
-/*document.querySelector('.b2').addEventListener('click', events.handlerAddNewPost);
-document.querySelector('.b3').addEventListener('click', events.handlerLogOut);
-document.querySelector('.b4').addEventListener('click', events.handlerLogIn);
-document.querySelector('.bShow').addEventListener('click', events.handlerShowMore); //не работает
-document.querySelector('.bSearch').addEventListener('click', events.handlerSearch);*/

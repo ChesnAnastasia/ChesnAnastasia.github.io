@@ -1,6 +1,6 @@
 var photoPosts = [];
 
-let moduleF = (function () {
+window.moduleF = (function () {
 
     photoPosts.sort(compareByDate);
     function compareByDate(photoPostA, photoPostB) {

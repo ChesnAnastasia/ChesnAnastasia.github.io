@@ -68,16 +68,14 @@ var options = {
     minute: 'numeric'
 };
 
-let module = (function () {
+window.module = (function () {
 
     let user = null;
-    let tape = document.querySelector('.Tape');
+    let tape = document.getElementsByClassName('Tape');
 
     let changeUser = function (newUser) {
         let User = document.querySelector('.User');
-        console.log(newUser);
         if (newUser !== null && typeof newUser === 'string' && newUser !== '') {
-            console.log(1);
             this.user = newUser;
             User.innerHTML = `
             <div class="user-profile">
@@ -85,25 +83,27 @@ let module = (function () {
                 <img class="img-profile" src="profile.jpg" alt="photo">
             </div>
             <div class="buttons">
-                <button class="b1" onclick="events.handlerEditProfilePhoto()">Edit Profile</button>
-                <button class="b2" onclick="events.handlerAddNewPost()">Add new post</button>
-                <button class="b3" onclick="events.handlerLogOut()">Log out</button>
+                <button class="b1" onclick="eventsMainPage.handlerEditProfilePhoto()">Edit Profile</button>
+                <button class="b2" onclick="eventsMainPage.handlerAddNewPost()">Add new post</button>
+                <button class="b3" onclick="eventsMainPage.handlerLogOut()">Log out</button>
             </div>`;
             User.style.height = '140px';
             User.style.margin = '65px 0 0 0';
         } else {
-            console.log(2);
             this.user = null;
             User.innerHTML = `
             <div class="user-profile">
                 <p class="user-name">Guest</p>
             </div>
             <div class="buttons">
-                <button class="b4" onclick="events.handlerLogIn()">Log in</button>
+                <button class="b4" onclick="eventsMainPage.handlerLogIn()">Log in</button>
             </div>`;
             User.style.height = '50px';
             User.style.margin = '85px 0 0 0';
         }
+        tape.innerHTML = '';
+        tape = document.getElementsByClassName('Tape')[0];
+        getPhotoPosts(0, 2);
     }
 
     let createPhotoPost = function (post) {
@@ -122,11 +122,11 @@ let module = (function () {
             </div>
             <div class="date-time-icons">
                 <div class="icons-block">
-                    <i class="like-icon material-icons" onclick="events.handlerLike()">favorite_border</i>
+                    <i class="like-icon material-icons" onclick="events.handlerLike()">favorite</i>
                     <i class="edit-icon material-icons">mode_edit</i>
-                    <i class="delete-icon material-icons">delete</i>
+                    <i class="delete-icon material-icons" onclick="events.handlerDelete(this)">delete</i>
                 </div>
-                <button class="count-likes">Show ` + post.likes.length + ` likes</button>
+                <button class="count-likes" onclick = "events.handlerCountLikes()">Show ` + post.likes.length + ` likes</button>
                 <p>` + post.createdAt.toLocaleString("en", options) + `</p>
             </div>
         </div>`;
@@ -167,6 +167,12 @@ let module = (function () {
         return false;
     }
 
+    function removeAllChilds(){
+        while(tape.innerHTML !== ''){
+            tape.removeChild(document.getElementsByClassName('post'));
+        }
+    }
+
     return {
         user,
         changeUser,
@@ -174,8 +180,8 @@ let module = (function () {
         clearTape,
         getPhotoPosts,
         removePhotoPost,
-        editPhotoPost
-
+        editPhotoPost,
+        removeAllChilds
     }
 })();
 
@@ -184,7 +190,6 @@ let lc = document.querySelector('.lc');
 lc.innerHTML = 'Date of last change: ' + dmy.toLocaleString("en", options);
 
 module.changeUser();
-module.getPhotoPosts(0, 2);
 
 /*
 module.changeUser();

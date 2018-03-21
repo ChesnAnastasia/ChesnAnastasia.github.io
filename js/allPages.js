@@ -1,10 +1,10 @@
 
-setHTML = (function(){
+window.setHTML = (function(){
     function setLogInPage(){
         let main = document.querySelector('.Main');
         main.innerHTML = `
         <header>
-            <img class="logo" src="logo.png" alt="logo">
+            <img class="logo" src="logo.png" alt="logo" onclick="eventsMainPage.handlerLogoMP()">
         </header>
         <div class="pictures">
             <img class="img-picture" src="complexPictures.png" alt="photo">
@@ -28,7 +28,7 @@ setHTML = (function(){
     function setAddNewPostPage(date) {
         let tapeBlock = document.querySelector('.Tape-block');
         tapeBlock.innerHTML = `
-        <link href="stylesAddPost.css" rel="stylesheet">
+        <link href="css/stylesAddPost.css" rel="stylesheet">
         <h1>Add new post</h1>
         <div class="new-post-block">
             <div class="no-image-block">
@@ -50,7 +50,7 @@ setHTML = (function(){
             
         </div>
         <header>
-            <img class="logo" src="logo.png" alt="logo">
+            <img class="logo" src="logo.png" alt="logo" onclick="eventsMainPage.handlerLogoMP()">
         </header>
         <div class="Tape-block">
             <div class="Filter">
@@ -65,7 +65,7 @@ setHTML = (function(){
             <div class="Tape">
 
             </div>
-            <button class="bshow" onclick="events.handlerShowMore(this)">Show more...</button>
+            <button class="bshow" onclick="eventsMainPage.handlerShowMore(this)">Show more...</button>
         </div>`;
     }
     
