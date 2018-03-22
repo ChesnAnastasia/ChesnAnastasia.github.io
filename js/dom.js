@@ -4,7 +4,7 @@ var post1 = {
     createdAt: new Date(2017, 03, 13, 16, 51),
     author: 'Mary',
     photoLink: '5.jpg',
-    likes: ['ChesnAnastasia', 'Kate'],
+    likes: [],//['ChesnAnastasia', 'Kate'],
     tags: ['#travel']
 }
 var post2 = {
@@ -13,7 +13,7 @@ var post2 = {
     createdAt: new Date(2017, 06, 07, 12, 49),
     author: 'ChesnAnastasia',
     photoLink: '4.jpg',
-    likes: ['Mary', 'Kate'],
+    likes: [],//['Mary', 'Kate'],
     tags: ['#travel', '#beauty']
 }
 var post3 = {
@@ -22,7 +22,7 @@ var post3 = {
     createdAt: new Date(2017, 09, 26, 16, 05),
     author: 'Mary',
     photoLink: '3.jpg',
-    likes: ['ChesnAnastasia'],
+    likes: [],//['ChesnAnastasia'],
     tags: ['#travel', '#beauty', '#happiness']
 }
 var post4 = {
@@ -31,7 +31,7 @@ var post4 = {
     createdAt: new Date(2017, 09, 26, 18, 24),
     author: 'ChesnAnastasia',
     photoLink: '2.jpg',
-    likes: ['Mary', 'Kate'],
+    likes: [],//['Mary', 'Kate'],
     tags: ['#happiness', '#travel']
 }
 var post5 = {
@@ -40,7 +40,7 @@ var post5 = {
     createdAt: new Date(2017, 09, 26, 16, 52),
     author: 'Kate',
     photoLink: '1.jpg',
-    likes: ['ChesnAnastasia', 'Mary'],
+    likes: [],//['ChesnAnastasia', 'Mary'],
     tags: ['#happiness', '#beauty']
 }
 var post6 = {
@@ -49,7 +49,7 @@ var post6 = {
     createdAt: new Date(2017, 09, 26, 16, 52),
     author: 'Kate',
     photoLink: '1.jpg',
-    likes: ['ChesnAnastasia', 'Mary'],
+    likes: [],//['ChesnAnastasia', 'Mary'],
     tags: ['#happiness', '#beauty']
 }
 
@@ -80,14 +80,12 @@ window.module = (function () {
             User.innerHTML = `
             <div class="user-profile">
                 <p class="user-name">` + this.user + `</p>
-                <img class="img-profile" src="profile.jpg" alt="photo">
             </div>
             <div class="buttons">
-                <button class="b1" onclick="eventsMainPage.handlerEditProfilePhoto()">Edit Profile</button>
                 <button class="b2" onclick="eventsMainPage.handlerAddNewPost()">Add new post</button>
                 <button class="b3" onclick="eventsMainPage.handlerLogOut()">Log out</button>
             </div>`;
-            User.style.height = '140px';
+            User.style.height = '80px';
             User.style.margin = '65px 0 0 0';
         } else {
             this.user = null;
@@ -99,7 +97,7 @@ window.module = (function () {
                 <button class="b4" onclick="eventsMainPage.handlerLogIn()">Log in</button>
             </div>`;
             User.style.height = '50px';
-            User.style.margin = '85px 0 0 0';
+            User.style.margin = '75px 0 0 0';
         }
         tape.innerHTML = '';
         tape = document.getElementsByClassName('Tape')[0];
@@ -122,14 +120,16 @@ window.module = (function () {
             </div>
             <div class="date-time-icons">
                 <div class="icons-block">
-                    <i class="like-icon material-icons" onclick="events.handlerLike()">favorite</i>
-                    <i class="edit-icon material-icons">mode_edit</i>
+                    <i class="like-icon material-icons" onclick="events.handlerLike(this)">favorite</i>
+                    <i class="edit-icon material-icons" onclick="events.handlerEdit(this)">mode_edit</i>
                     <i class="delete-icon material-icons" onclick="events.handlerDelete(this)">delete</i>
                 </div>
                 <button class="count-likes" onclick = "events.handlerCountLikes()">Show ` + post.likes.length + ` likes</button>
                 <p>` + post.createdAt.toLocaleString("en", options) + `</p>
             </div>
         </div>`;
+        let index = post.likes.indexOf(this.user);
+        if (index !== -1) myclass.querySelector('.like-icon material-icons').style.color = 'rgb(160, 28, 85)';
         myclass.appendChild(newPost);
         return newPost;
     }

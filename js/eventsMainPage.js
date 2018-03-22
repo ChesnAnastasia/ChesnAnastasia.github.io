@@ -5,15 +5,12 @@ window.eventsMainPage = (function(){
         module.changeUser(module.user);
     }
 
-    function handlerEditProfilePhoto() {
-        
-    }
-
     function handlerAddNewPost(){
         setHTML.setAddNewPostPage(new  Date());
     }
 
-    function handlerLogOut(func){
+    function handlerLogOut(){
+        setHTML.setMainPage();
         module.changeUser();
     }
 
@@ -31,7 +28,6 @@ window.eventsMainPage = (function(){
 
     return {
         handlerLogoMP,
-        handlerEditProfilePhoto,
         handlerAddNewPost,
         handlerLogOut,
         handlerLogIn,

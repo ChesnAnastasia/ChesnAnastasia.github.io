@@ -68,97 +68,6 @@
     border-radius: 6px;
 }
 
-.Tape {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    margin-top:50px;
-    bottom:80px;
-}
-.post {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    max-height: 900px;
-    align-self: center;
-    justify-content: space-between;
-    align-items: center;
-    margin: 15px 5px 15px 5px;
-}
-.post-photo {
-    width: 85%;
-    border: 7px solid rgb(195, 165, 178);
-    border-radius: 6px;
-}
-.info-about-post {
-    display: flex;
-    width: 100%;
-    margin-top: 20px;
-    justify-content: space-between;
-    background-color: rgb(221, 203, 211);
-    border-radius: 6px;
-}
-.post-author-tags-description {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 65%;
-    margin-bottom: 5px;
-    margin-left: 5px;
-}
-.post-tags, .post-description {
-    width: 100%;
-    font-size: 90%;
-    font-family: Arial;
-    background-color: rgb(246, 242, 244);
-    border-radius: 6px;
-    margin-top: 5px;
-}
-.date-time-icons {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    font-size: 70%;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    margin-top: 5px;
-    width: 30%;
-}
-.icons {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.material-icons {
-    cursor: pointer;
-    margin-right: 5%;
-    margin-left: 5%;
-    color: rgb(55, 11, 30);
-}
-.count-likes{
-    margin-left:10%;
-    margin-right:10%;
-    width: 80%;
-    border-radius:6px;
-    border-color:white;
-    margin-top: 2%;
-}
-
-.bshow {
-    font-family: Comic Sans MS;
-    color: rgb(55, 11, 30);
-    font-size: 90%;
-    border-color: rgb(195, 165, 178);
-    background-color: rgb(233, 225, 228);
-    border-radius: 6px;
-    width:60%;
-    min-width:180px;
-    margin:15px 20% 20px 20%;
-}
-
 @media screen and (max-width: 800px) {
 
     .Filter {
@@ -173,15 +82,11 @@
         width: 100%;
     }
 
-    .Tape {
-        margin-top: 215px;
-    }
-
     .User {
         position: absolute;
         margin: 0;
         width: 100%;
-        height: 140px;
+        height: 70px;
         top: 65px;
         min-height:0;
         margin-top: 50px;
