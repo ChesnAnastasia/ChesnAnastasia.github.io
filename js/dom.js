@@ -1,5 +1,5 @@
 var post1 = {
-    id: '1',
+    //id: '1',
     description: 'Austria, Wien',
     createdAt: new Date(2017, 03, 13, 16, 51),
     author: 'Mary',
@@ -8,7 +8,7 @@ var post1 = {
     tags: ['#travel']
 }
 var post2 = {
-    id: '2',
+    //id: '2',
     description: 'Russia, Sankt-Peterburg',
     createdAt: new Date(2017, 06, 07, 12, 49),
     author: 'ChesnAnastasia',
@@ -17,7 +17,7 @@ var post2 = {
     tags: ['#travel', '#beauty']
 }
 var post3 = {
-    id: '3',
+    //id: '3',
     description: 'Hungary, Pech',
     createdAt: new Date(2017, 09, 26, 16, 05),
     author: 'Mary',
@@ -26,7 +26,7 @@ var post3 = {
     tags: ['#travel', '#beauty', '#happiness']
 }
 var post4 = {
-    id: '4',
+    //id: '4',
     description: 'Hungary, Pech',
     createdAt: new Date(2017, 09, 26, 18, 24),
     author: 'ChesnAnastasia',
@@ -35,16 +35,7 @@ var post4 = {
     tags: ['#happiness', '#travel']
 }
 var post5 = {
-    id: '5',
-    description: 'Hungary, Pech',
-    createdAt: new Date(2017, 09, 26, 16, 52),
-    author: 'Kate',
-    photoLink: '1.jpg',
-    likes: [],//['ChesnAnastasia', 'Mary'],
-    tags: ['#happiness', '#beauty']
-}
-var post6 = {
-    id: '5',
+    //id: '5',
     description: 'Hungary, Pech',
     createdAt: new Date(2017, 09, 26, 16, 52),
     author: 'Kate',
@@ -73,6 +64,10 @@ window.module = (function () {
     let user = null;
     let tape = document.getElementsByClassName('Tape');
 
+    let setTape = function(){
+        tape = document.getElementsByClassName('Tape')[0];
+    }
+
     let changeUser = function (newUser) {
         let User = document.querySelector('.User');
         if (newUser !== null && typeof newUser === 'string' && newUser !== '') {
@@ -100,7 +95,7 @@ window.module = (function () {
             User.style.margin = '75px 0 0 0';
         }
         tape.innerHTML = '';
-        tape = document.getElementsByClassName('Tape')[0];
+        setTape();
         getPhotoPosts(0, 2);
     }
 
@@ -130,6 +125,9 @@ window.module = (function () {
         </div>`;
         let index = post.likes.indexOf(this.user);
         if (index !== -1) myclass.querySelector('.like-icon material-icons').style.color = 'rgb(160, 28, 85)';
+        //else myclass.querySelector('.like-icon material-icons').style.color = 'rgb(55, 11, 30)';
+        /*if (index !== -1) myclass.querySelector('.like-icon material-icons').innerHTML = 'favorite';
+        else myclass.querySelector('.like-icon material-icons').innerHTML = 'favorite_border';*/
         myclass.appendChild(newPost);
         return newPost;
     }
@@ -143,9 +141,10 @@ window.module = (function () {
     let clearTape = function () {
         tape.innerHTML = '';
     }
-
+    
     let getPhotoPosts = function (skip, top, filterConfig) {
         let posts = moduleF.getPhotoPosts(skip, top, filterConfig);
+        count = posts.length;
         posts.forEach(item => {
             tape.appendChild(createPhotoPost(item));
         });
@@ -175,7 +174,9 @@ window.module = (function () {
 
     return {
         user,
+        setTape,
         changeUser,
+        createPhotoPost,
         addPhotoPost,
         clearTape,
         getPhotoPosts,

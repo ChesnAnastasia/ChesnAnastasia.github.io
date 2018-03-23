@@ -1,6 +1,7 @@
 var photoPosts = [];
 
 window.moduleF = (function () {
+    let countId = 1;
 
     photoPosts.sort(compareByDate);
     function compareByDate(photoPostA, photoPostB) {
@@ -21,17 +22,19 @@ window.moduleF = (function () {
     }
     let validatePhotoPost = function (photoPost) {
         if (photoPost.id && typeof (photoPost.id) === 'string'
-            && photoPost.description && typeof (photoPost.description) === 'string' && photoPost.description.length <= 300
+            && photoPost.description && typeof (photoPost.description) === 'string' && photoPost.description.length <= 200
             && photoPost.createdAt && photoPost.createdAt instanceof Date
             && photoPost.author && typeof (photoPost.author) === 'string' && photoPost.author !== ''
             && photoPost.photoLink && typeof (photoPost.photoLink) === 'string' && photoPost.photoLink !== ''
-            && (typeof (photoPost.tags) === 'undefined' || (validArr(photoPost.tags) && photoPost.tags.length <= 30))
+            && (typeof (photoPost.tags) === 'undefined' || validArr(photoPost.tags))
             && (typeof (photoPost.likes) === 'undefined' || validArr(photoPost.likes))) return true;
         else return false;
     }
 
 
     let addPhotoPost = function (photoPost) {
+        photoPost.id = '' + countId;
+        countId++;
         if (validatePhotoPost(photoPost) && typeof(this.getPhotoPost(photoPost.id)) === 'undefined') {
             photoPosts.push(photoPost);
             photoPosts.sort(compareByDate);
@@ -110,6 +113,7 @@ window.moduleF = (function () {
     return {
         getPhotoPosts,
         getPhotoPost,
+        validatePhotoPost,
         addPhotoPost,
         editPhotoPost,
         removePhotoPost

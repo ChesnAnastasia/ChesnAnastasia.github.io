@@ -93,6 +93,13 @@ input {
     justify-content: center;
 }
 
+textarea {
+    border-radius: 6px;
+    border:2px solid rgb(195, 165, 178);
+    margin-left: 10px;
+    background-color: rgb(246, 242, 244);
+}
+
 p {
     font-family: Comic Sans MS;
     color: rgb(55, 11, 30);

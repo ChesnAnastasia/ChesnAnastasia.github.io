@@ -1,10 +1,3 @@
-.Main {
-    min-height: 470px;
-}
-
-.Tape-block{
-    min-height: 470px;
-}
 
 .new-post-block {
     display: flex;
@@ -25,12 +18,17 @@
     height: 200px;
 }
 
-#image-url{
+#image-url1 {
     width: 80%;
     height: 25px;
     margin-bottom: 25px;
 }
-
+#image-url2 {
+    width: 80%;
+    height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .edit-image {
     cursor: pointer;

@@ -14,18 +14,18 @@ window.setHTML = (function(){
                 <h1>Authorization Form</h1>
                 <div class="login">
                     <p class="login-password">Login:</p>
-                    <input class="input-log-pass" id="login" type="text" placeholder="Enter your login" />
+                    <input class="input-log-pass" id="login" type="text" minlength="3" maxlength="20" placeholder="Enter your login" />
                 </div>
                 <div class="password">
                     <p class="login-password">Password:</p>
-                    <input class="input-log-pass" id="password" type="text" placeholder="Enter your password" />
+                    <input class="input-log-pass" id="password" type="text" minlength="6" maxlength="10" placeholder="Enter your password" />
                 </div>
                 <button class="bEnter" onclick="events.handlerButtonEnter()">Enter</button>
             </div>
         </div>`;
     }
 
-    function getFile() {
+    /*function getFile() {
         document.getElementById("img-upload").click();
     }
     function updateImageDisplay() {
@@ -33,7 +33,7 @@ window.setHTML = (function(){
         if (curFiles.length !== 0) {
             document.querySelector('.edit-image').src = document.getElementById('img-upload').files[0].name;
         }
-    }
+    }*/
 
     function setAddNewPostPage(date) {//no_icon.png
         let tapeBlock = document.querySelector('.Tape-block');
@@ -43,14 +43,12 @@ window.setHTML = (function(){
         <div class="new-post-block">
             <div class="no-image-block">
                 <img src="no_icon.png" class="download-image">
-                <input id="image-url" type="text" placeholder="Link to photo">
-
+                <textarea id="image-url1" type="text" placeholder="Link to photo"></textarea>
                 <p class="date-of-creating">` + date.toLocaleString("en", options) + `</p>
-                
             </div>
             <div class="write-info-block">
-                <input class="tags-comments" id="tags" type="text" placeholder="Add tags..." maxlenght = "200">
-                <input class="tags-comments" id="descriptions" type="text" placeholder="Add descriptions..." maxlenght = "200">
+                <textarea class="tags-comments" id="tags" type="text" rows="10" placeholder="Add tags..." maxlenght = "200"></textarea>
+                <textarea class="tags-comments" id="descriptions" type="text" rows="10" placeholder="Add descriptions..." maxlenght = "200"></textarea>
                 <button class="bAdd" onclick="events.handlerAdd()">Add</button>
             </div>
         </div>`;
@@ -64,12 +62,13 @@ window.setHTML = (function(){
         <div class="new-post-block">
             <div class="no-image-block">
                 <img class="edit-image" src="` + post.photoLink + `" />
+                <textarea id="image-url2" type="text" placeholder="Link to new photo"></textarea>
                 <p class="date-of-creating">` + post.createdAt.toLocaleString("en", options) + `</p>
             </div>
             <div class="write-info-block">
-                <input class="tags-comments" id="edit-tags" type="text" placeholder="` + post.description + `" maxlenght = "200">
-                <input class="tags-comments" id="edit-descriptions" type="text" placeholder="` + post.tags + `" maxlenght = "200">
-                <button class="bAdd">Save</button>
+                <textarea class="tags-comments" id="edit-tags" type="text" rows="10" placeholder="` + post.tags + `" maxlenght = "200"></textarea>
+                <textarea class="tags-comments" id="edit-descriptions" type="text" rows="10" placeholder="` + post.description + `" maxlenght = "200"></textarea>
+                <button class="bAdd" onclick="events.handlerSave(this)">Save</button>
             </div>
         </div>`;
     }
