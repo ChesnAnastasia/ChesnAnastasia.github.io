@@ -14,5 +14,9 @@ var users = [
     {
         login: "Eliz",
         password: "bsu123"
+    },
+    {
+        login: "Kate",
+        password: "098765"
     }
 ];

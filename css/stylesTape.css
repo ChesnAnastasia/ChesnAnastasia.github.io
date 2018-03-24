@@ -57,13 +57,33 @@
     margin-top: 5px;
     width: 30%;
 }
-.icons {
+.icons-block {
     display: flex;
     justify-content: center;
     width: 100%;
 }
-.like-icon {
-    color: rgb(55, 11, 30);
+.show-likes {
+    position: relative;
+}
+.show-likes:hover .table {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    overflow-y: scroll;
+    padding: 10px;
+    bottom: 35px;
+    width: 95%;
+    height: 100px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid rgb(195, 165, 178);
+}
+.show-likes:hover .authors-like {
+    display: inline;
+    font-size: 13px;
+}
+.authors-like {
+    display: none;
 }
 .count-likes{
     margin-left:10%;

@@ -107,7 +107,7 @@ window.setHTML = (function(){
             <input id="author-name" type="text" placeholder="AuthorName">
             <input id="tags" type="text" placeholder="#tags">
             <input id="date" type=date placeholder="DD.MM.YYYY">
-            <button class="bSearch" onclick="events.handlerSearch()">
+            <button class="bSearch" onclick="events.handlerSearch(this)">
                 <i class="search-icon material-icons">search</i>
             </button>
         </div>

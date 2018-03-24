@@ -18,7 +18,7 @@ window.events = (function(){
         }
     }
 
-    function handlerSearch(){
+    function handlerSearch(obj){
         let authorName = document.getElementById('author-name').value;
         let htags = document.getElementById('tags').value;
         let date = document.getElementById('date').value;
@@ -29,7 +29,7 @@ window.events = (function(){
 
         let filter = {};
         if (authorName != '' && authorName != null) filter.author = authorName;
-        if (date != '' && date != null) filter.createdAt = date.DateTimeFormat;
+        if (date != '' && date != null) filter.createdAt = new Date(date);
         if (htags != '' && htags != null) {
             filter.tags = htags.match(/\#[a-z0-9_]{1,20}/g);
             if (htags === null) filter.tags = [];
@@ -38,16 +38,23 @@ window.events = (function(){
         setHTML.setTapeBlock();
         module.setTape();
         module.getPhotoPosts(0, photoPosts.length, filter);
-        document.getElementsByClassName('bShow').style.display = 'none';
+
+        //let parent = obj.parentNode;
+        //parent = parent.parentNode;
+        //parent.getElementsByClassName('bShow').style.display = 'none';
+        //document.getElementsByClassName('bShow').style.display = 'none';
         
     }
 
     function handlerLike(obj){
         let child;
+        let table;
         if (module.user !== null){
             let parent = obj.parentNode;
             parent = parent.parentNode;
             child = parent.getElementsByClassName('count-likes');
+            list = parent.getElementsByClassName('authors-like');
+            console.log(table);
             parent = parent.parentNode;
             parent = parent.parentNode;
             
@@ -56,19 +63,19 @@ window.events = (function(){
                 moduleF.getPhotoPost(parent.id).likes.splice(index, 1);
                 child = child[0];
                 child.innerHTML = 'Show ' + moduleF.getPhotoPost(parent.id).likes.length + ' likes';
-                obj.style.color = 'rgb(55, 11, 30)';
+                obj.innerHTML = 'favorite_border';//style.color = 'rgb(55, 11, 30)';
             } else {
                 moduleF.getPhotoPost(parent.id).likes.push(module.user);
                 child = child[0];
                 child.innerHTML = 'Show ' + moduleF.getPhotoPost(parent.id).likes.length + ' likes';
-                obj.style.color = 'rgb(160, 28, 85)';
+                obj.innerHTML = 'favorite';
+                //obj.style.color = 'rgb(160, 28, 85)';
             }
+            list = list[0];
+            list.innerHTML =  moduleF.getPhotoPost(parent.id).likes;
         } else {
             alert(`You can not put like, edit and delete the post. Please login to get this opportunity.`);
         }
-    }
-    function handlerCountLikes(){
-
     }
     function handlerDelete(obj){
         if (module.user !== null){
@@ -76,7 +83,8 @@ window.events = (function(){
             parent = parent.parentNode;
             parent = parent.parentNode;
             parent = parent.parentNode;
-            module.removePhotoPost(parent.id);
+            if (module.user === moduleF.getPhotoPost(parent.id).author) module.removePhotoPost(parent.id);
+            else alert(`You can not edit and delete posts of other users.`);
         } else {
             alert(`You can not put like, edit and delete the post. Please login to get this opportunity.`);
         }
@@ -89,9 +97,10 @@ window.events = (function(){
             parent = parent.parentNode;
             parent = parent.parentNode;
             parent = parent.parentNode;
-            console.log(parent.createdAt);
-            setHTML.setEditPostPage(moduleF.getPhotoPost(parent.id));
-            id = parent.id;
+            if (module.user === moduleF.getPhotoPost(parent.id).author) {
+                setHTML.setEditPostPage(moduleF.getPhotoPost(parent.id));
+                id = parent.id;
+            } else alert(`You can not edit and delete posts of other users.`);
         } else {
             alert(`You can not put like, edit and delete the post. Please login to get this opportunity.`);
         }
@@ -145,7 +154,6 @@ window.events = (function(){
         handlerButtonEnter,
         handlerSearch,
         handlerLike,
-        handlerCountLikes,
         handlerDelete,
         handlerEdit,
         handlerSave,

@@ -72,9 +72,10 @@ window.module = (function () {
         let User = document.querySelector('.User');
         if (newUser !== null && typeof newUser === 'string' && newUser !== '') {
             this.user = newUser;
+            user = newUser;
             User.innerHTML = `
             <div class="user-profile">
-                <p class="user-name">` + this.user + `</p>
+                <p class="user-name">` + user + `</p>
             </div>
             <div class="buttons">
                 <button class="b2" onclick="eventsMainPage.handlerAddNewPost()">Add new post</button>
@@ -84,6 +85,7 @@ window.module = (function () {
             User.style.margin = '65px 0 0 0';
         } else {
             this.user = null;
+            user = null;
             User.innerHTML = `
             <div class="user-profile">
                 <p class="user-name">Guest</p>
@@ -115,16 +117,23 @@ window.module = (function () {
             </div>
             <div class="date-time-icons">
                 <div class="icons-block">
-                    <i class="like-icon material-icons" onclick="events.handlerLike(this)">favorite</i>
+                    <i class="like-icon material-icons" onclick="events.handlerLike(this)">${post.likes.includes(user)?'favorite':'favorite_border'}</i>
                     <i class="edit-icon material-icons" onclick="events.handlerEdit(this)">mode_edit</i>
                     <i class="delete-icon material-icons" onclick="events.handlerDelete(this)">delete</i>
                 </div>
-                <button class="count-likes" onclick = "events.handlerCountLikes()">Show ` + post.likes.length + ` likes</button>
+                <div class="show-likes">
+                    <button class="count-likes" onclick = "events.handlerCountLikes()">Show ` + post.likes.length + ` likes</button>
+                    <div class="table">
+                        <p class="authors-like">` + post.likes + `</p>
+                    </div>
+                </div>
                 <p>` + post.createdAt.toLocaleString("en", options) + `</p>
             </div>
         </div>`;
-        let index = post.likes.indexOf(this.user);
-        if (index !== -1) myclass.querySelector('.like-icon material-icons').style.color = 'rgb(160, 28, 85)';
+        //if (post.likes.length !== 0)
+
+        //let index = post.likes.indexOf(user);
+        //if (index !== -1) myclass.querySelector('.like-icon material-icons').innerHTML = 'favorite_border';//style.color = 'rgb(160, 28, 85)';
         //else myclass.querySelector('.like-icon material-icons').style.color = 'rgb(55, 11, 30)';
         /*if (index !== -1) myclass.querySelector('.like-icon material-icons').innerHTML = 'favorite';
         else myclass.querySelector('.like-icon material-icons').innerHTML = 'favorite_border';*/
@@ -145,8 +154,8 @@ window.module = (function () {
     let getPhotoPosts = function (skip, top, filterConfig) {
         let posts = moduleF.getPhotoPosts(skip, top, filterConfig);
         count = posts.length;
-        posts.forEach(item => {
-            tape.appendChild(createPhotoPost(item));
+        posts.forEach(element => {
+            tape.appendChild(createPhotoPost(element));
         });
     }
 
