@@ -69,7 +69,7 @@ window.module = (function () {
         <div class="info-about-post">
             <div class="post-author-tags-description">
                 <p>` + post.author + `</p>
-                <p class="post-tags">` + post.tags + `</p>
+                <p class="post-tags">` + arrayToString(post.tags) + `</p>
                 <p class="post-description">` + post.description + `</p>
             </div>
             <div class="date-time-icons">
@@ -81,7 +81,7 @@ window.module = (function () {
                 <div class="show-likes">
                     <button class="count-likes" onclick = "events.handlerCountLikes()">Show ` + post.likes.length + ` likes</button>
                     <div class="table">
-                        <p class="authors-like">` + post.likes + `</p>
+                        <p class="authors-like">` + arrayToString(post.likes) + `</p>
                     </div>
                 </div>
                 <p>` + post.createdAt.toLocaleString("en", options) + `</p>

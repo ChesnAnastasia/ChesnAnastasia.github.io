@@ -56,7 +56,7 @@ window.setHTML = (function(){
                 <p class="date-of-creating">` + post.createdAt.toLocaleString("en", options) + `</p>
             </div>
             <div class="write-info-block">
-                <textarea class="tags-comments" id="edit-tags" type="text" rows="10" placeholder="` + post.tags + `" maxlenght = "200"></textarea>
+                <textarea class="tags-comments" id="edit-tags" type="text" rows="10" placeholder="` + arrayToString(post.tags) + `" maxlenght = "200"></textarea>
                 <textarea class="tags-comments" id="edit-descriptions" type="text" rows="10" placeholder="` + post.description + `" maxlenght = "200"></textarea>
                 <button class="bAdd" onclick="events.handlerSave(this)">Save</button>
             </div>

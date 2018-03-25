@@ -26,3 +26,11 @@ if (!localStorage.getItem('arrayOfUsers')){
 var users = JSON.parse(localStorage.getItem('arrayOfUsers'));
 console.log(users);
 
+function arrayToString(arr){
+    let string = '';
+    arr.forEach(element => {
+        string += element + ', ';
+    });
+    string = string.substring(0, string.length - 2);
+    return string;
+}
