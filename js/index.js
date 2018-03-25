@@ -117,6 +117,7 @@ window.moduleF = (function () {
             if (key == 'createdAt') return new Date(value);
             return value;
         });
+        photoPosts.sort(compareByDate);
         let posts = photoPosts;
         if (filterConfig && validateFilter(filterConfig)) {
             if (filterConfig.author) {
