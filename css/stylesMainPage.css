@@ -68,6 +68,19 @@
     border-radius: 6px;
 }
 
+.bshow {
+    display: inline;
+    font-family: Comic Sans MS;
+    color: rgb(55, 11, 30);
+    font-size: 90%;
+    border-color: rgb(195, 165, 178);
+    background-color: rgb(233, 225, 228);
+    border-radius: 6px;
+    width:60%;
+    min-width:180px;
+    margin:15px 20% 20px 20%;
+}
+
 @media screen and (max-width: 800px) {
 
     .Filter {
@@ -121,5 +134,6 @@
         margin-right: 3%;
         display: flex;
         flex-direction: column;
+        margin-top: 3px;
     }
 }

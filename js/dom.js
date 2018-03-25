@@ -1,55 +1,7 @@
-var post1 = {
-    //id: '1',
-    description: 'Austria, Wien',
-    createdAt: new Date(2017, 03, 13, 16, 51),
-    author: 'Mary',
-    photoLink: '5.jpg',
-    likes: [],//['ChesnAnastasia', 'Kate'],
-    tags: ['#travel']
-}
-var post2 = {
-    //id: '2',
-    description: 'Russia, Sankt-Peterburg',
-    createdAt: new Date(2017, 06, 07, 12, 49),
-    author: 'ChesnAnastasia',
-    photoLink: '4.jpg',
-    likes: [],//['Mary', 'Kate'],
-    tags: ['#travel', '#beauty']
-}
-var post3 = {
-    //id: '3',
-    description: 'Hungary, Pech',
-    createdAt: new Date(2017, 09, 26, 16, 05),
-    author: 'Mary',
-    photoLink: '3.jpg',
-    likes: [],//['ChesnAnastasia'],
-    tags: ['#travel', '#beauty', '#happiness']
-}
-var post4 = {
-    //id: '4',
-    description: 'Hungary, Pech',
-    createdAt: new Date(2017, 09, 26, 18, 24),
-    author: 'ChesnAnastasia',
-    photoLink: '2.jpg',
-    likes: [],//['Mary', 'Kate'],
-    tags: ['#happiness', '#travel']
-}
-var post5 = {
-    //id: '5',
-    description: 'Hungary, Pech',
-    createdAt: new Date(2017, 09, 26, 16, 52),
-    author: 'Kate',
-    photoLink: '1.jpg',
-    likes: [],//['ChesnAnastasia', 'Mary'],
-    tags: ['#happiness', '#beauty']
-}
 
-moduleF.addPhotoPost(post1);
-moduleF.addPhotoPost(post2);
-moduleF.addPhotoPost(post3);
-moduleF.addPhotoPost(post4);
-moduleF.addPhotoPost(post5);
-setHTML.setMainPage();
+if (localStorage.getItem('currentUser') === 'undefind') setHTML.setMainPage();
+else setHTML.setMainPage(localStorage.getItem('currentUser'));
+console.log(localStorage.getItem('currentUser'));
 
 var options = {
     month: 'long',
@@ -61,7 +13,15 @@ var options = {
 
 window.module = (function () {
 
-    let user = null;
+
+    /* photoPosts = JSON.parse(localStorage.getItem('arrOfPosts'), function (key, value) {
+        if (key == 'createdAt') return new Date(value);
+        return value;
+    });
+    localStorage.setItem('arrOfPosts', JSON.stringify(photoPosts)); */
+
+    var user = localStorage.getItem('currentUser') === 'undefind' ? null : localStorage.getItem('currentUser');
+
     let tape = document.getElementsByClassName('Tape');
 
     let setTape = function(){
@@ -83,6 +43,7 @@ window.module = (function () {
             </div>`;
             User.style.height = '80px';
             User.style.margin = '65px 0 0 0';
+            localStorage.setItem('currentUser', newUser);
         } else {
             this.user = null;
             user = null;
@@ -95,6 +56,7 @@ window.module = (function () {
             </div>`;
             User.style.height = '50px';
             User.style.margin = '75px 0 0 0';
+            localStorage.setItem('currentUser', 'undefind');
         }
         tape.innerHTML = '';
         setTape();

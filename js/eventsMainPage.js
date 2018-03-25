@@ -1,6 +1,7 @@
 window.eventsMainPage = (function(){
 
     function handlerLogoMP(){
+        console.log(localStorage.getItem('currentUser') === 'undefind' ? null : localStorage.getItem('currentUser'));
         setHTML.setMainPage();
         module.changeUser(module.user);
     }
@@ -19,6 +20,10 @@ window.eventsMainPage = (function(){
     }
 
     function handlerShowMore(btn){
+        photoPosts = JSON.parse(localStorage.getItem('arrOfPosts'), function (key, value) {
+            if (key == 'createdAt') return new Date(value);
+            return value;
+        });
         let count = document.getElementsByClassName('post').length;
         if (count + 2 >= photoPosts.length) {
             btn.style.display = 'none';

@@ -25,16 +25,6 @@ window.setHTML = (function(){
         </div>`;
     }
 
-    /*function getFile() {
-        document.getElementById("img-upload").click();
-    }
-    function updateImageDisplay() {
-        var curFiles = document.getElementById("img-upload").files;
-        if (curFiles.length !== 0) {
-            document.querySelector('.edit-image').src = document.getElementById('img-upload').files[0].name;
-        }
-    }*/
-
     function setAddNewPostPage(date) {//no_icon.png
         let tapeBlock = document.querySelector('.Tape-block');
         tapeBlock.innerHTML = `
@@ -79,24 +69,24 @@ window.setHTML = (function(){
         <div class="User">
             
         </div>
-        <header>
-            <img class="logo" src="logo.png" alt="logo" onclick="eventsMainPage.handlerLogoMP()">
-        </header>
         <div class="Tape-block">
+            <div class="Tape">
+
+            </div>
             <div class="Filter">
                 <p class="search">Search by:</p>
                 <input id="author-name" type="text" placeholder="AuthorName">
                 <input id="tags" type="text" placeholder="#tags">
                 <input id="date" type=date placeholder="DD.MM.YYYY">
-                <button class="bSearch" onclick="events.handlerSearch()">
+                <button class="bSearch" onclick="events.handlerSearch(this)">
                     <i class="search-icon material-icons">search</i>
                 </button>
             </div>
-            <div class="Tape">
-
-            </div>
             <button class="bshow" onclick="eventsMainPage.handlerShowMore(this)">Show more...</button>
-        </div>`;
+        </div>
+        <header>
+            <img class="logo" src="logo.png" alt="logo" onclick="eventsMainPage.handlerLogoMP()">
+        </header>`;
     }
 
     function setTapeBlock(){
@@ -117,12 +107,30 @@ window.setHTML = (function(){
         <button class="bshow" onclick="eventsMainPage.handlerShowMore(this)">Show more...</button>`;
         
     }
+
+    function setTapeBlockForFilter(){
+        let tapeBlock = document.querySelector('.Tape-block');
+        tapeBlock.innerHTML = `
+        <div class="Filter">
+            <p class="search">Search by:</p>
+            <input id="author-name" type="text" placeholder="AuthorName">
+            <input id="tags" type="text" placeholder="#tags">
+            <input id="date" type=date placeholder="DD.MM.YYYY">
+            <button class="bSearch" onclick="events.handlerSearch(this)">
+                <i class="search-icon material-icons">search</i>
+            </button>
+        </div>
+        <div class="Tape">
+
+        </div>`;
+    }
     
     return{
         setLogInPage,
         setAddNewPostPage,
         setEditPostPage,
         setMainPage,
-        setTapeBlock
+        setTapeBlock,
+        setTapeBlockForFilter
     }
 })();
