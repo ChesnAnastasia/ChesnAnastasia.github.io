@@ -27,11 +27,7 @@ window.events = (function(){
         let authorName = document.getElementById('author-name').value;
         let htags = document.getElementById('tags').value;
         let date = document.getElementById('date').value;
-
-        console.log(authorName);
-        console.log(tags);
-        console.log(date);
-
+        
         let filter = {};
         if (authorName != '' && authorName != null) filter.author = authorName;
         if (date != '' && date != null) filter.createdAt = new Date(date);
@@ -44,13 +40,13 @@ window.events = (function(){
         module.setTape();
         module.getPhotoPosts(0, photoPosts.length, filter);
 
-        let parent = obj.parentNode;
+        /*let parent = obj.parentNode;
         console.log(parent.getElementsByClassName('bshow'));
         console.log(document.getElementsByClassName('bshow'));
         console.log(parent.querySelector('.bshow'));
         console.log(document.querySelector('.bshow'));
         //parent.getElementsByClassName('bshow').innerHTML = '';
-        document.querySelector('.bShow').style.display = 'none';
+        document.querySelector('.bShow').style.display = 'none';*/
         
     }
 

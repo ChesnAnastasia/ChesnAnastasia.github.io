@@ -1,8 +1,4 @@
 
-if (localStorage.getItem('currentUser') === 'undefind') setHTML.setMainPage();
-else setHTML.setMainPage(localStorage.getItem('currentUser'));
-console.log(localStorage.getItem('currentUser'));
-
 var options = {
     month: 'long',
     day: 'numeric',
@@ -12,7 +8,6 @@ var options = {
 };
 
 window.module = (function () {
-
 
     /* photoPosts = JSON.parse(localStorage.getItem('arrOfPosts'), function (key, value) {
         if (key == 'createdAt') return new Date(value);
@@ -157,11 +152,19 @@ window.module = (function () {
     }
 })();
 
+if (localStorage.getItem('currentUser') === 'undefind') {
+    setHTML.setMainPage();
+    module.changeUser();
+}
+else {
+    setHTML.setMainPage(localStorage.getItem('currentUser'));
+    module.changeUser(localStorage.getItem('currentUser'));
+}
+console.log(localStorage.getItem('currentUser'));
+
 let dmy = new Date();
 let lc = document.querySelector('.lc');
 lc.innerHTML = 'Date of last change: ' + dmy.toLocaleString("en", options);
-
-module.changeUser();
 
 /*
 module.changeUser();
