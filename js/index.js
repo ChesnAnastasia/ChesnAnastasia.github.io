@@ -89,15 +89,12 @@ window.moduleF = (function () {
 
 
     let addPhotoPost = function (photoPost) {
-        let id = localStorage.getItem('currentId');
-        photoPost.id = '' + id;
-        id++;
-        localStorage.setItem('currentId', id);
         photoPosts = JSON.parse(localStorage.getItem('arrOfPosts'), function (key, value) {
             if (key == 'createdAt') return new Date(value);
             return value;
         });
         if (validatePhotoPost(photoPost) && typeof(this.getPhotoPost(photoPost.id)) === 'undefined') {
+            console.log(true);
             photoPosts.push(photoPost);
             photoPosts.sort(compareByDate);
             localStorage.setItem('arrOfPosts', JSON.stringify(photoPosts));
